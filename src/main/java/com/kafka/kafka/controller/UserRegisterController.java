@@ -32,7 +32,6 @@ public class UserRegisterController {
        }catch (Exception e){
            throw new NotFoundExceptions(e.getMessage());
        }
-
        return userRegisterResponse;
    }
 

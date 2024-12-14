@@ -28,8 +28,14 @@ public class UserRegisterServiceImpl implements UserRegisterService {
 
 
     @Override
-    public UserRegisterResponse userRegister(UserRegisterRequest userRegisterRequest) throws Exception {
+    public UserRegisterResponse userRegister(UserRegisterRequest userRegisterRequest) throws Exception, NotFoundExceptions {
         UserRegisterResponse userRegisterResponse=new UserRegisterResponse();
+        if (userRegisterRequest.getMobileNumber()!=null){
+            User user=userRepository.findByMobileNumber(userRegisterRequest.getMobileNumber());
+            if (user!=null){
+               throw new NotFoundExceptions("You are already registered Kindly sign-in ");
+            }
+        }
         User user = new User();
         user.setUserId(UUID.randomUUID().toString());
         user.setName(userRegisterRequest.getName());

@@ -9,6 +9,6 @@ import com.kafka.kafka.exception.NotFoundExceptions;
 public interface UserRegisterService {
 
 
-    public UserRegisterResponse userRegister(UserRegisterRequest userRegisterRequest) throws Exception;
+    public UserRegisterResponse userRegister(UserRegisterRequest userRegisterRequest) throws Exception, NotFoundExceptions;
     public GetUserRegisterResponse getUserData(GetUserDataRequest getUserDataRequest) throws NotFoundExceptions;
 }

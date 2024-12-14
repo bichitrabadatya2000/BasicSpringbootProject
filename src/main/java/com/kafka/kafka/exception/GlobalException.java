@@ -21,7 +21,7 @@ public class GlobalException {
     @ExceptionHandler({NotFoundExceptions.class})
     public ResponseEntity<StatusResponse> nullPointerException(NotFoundExceptions exceptions){
         StatusResponse statusResponse=new StatusResponse(400,exceptions.getMessage());
-        return new ResponseEntity<>(statusResponse,HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(statusResponse,HttpStatus.BAD_REQUEST);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
