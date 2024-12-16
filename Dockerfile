@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM openjdk:17-jdk-alpine
 
 COPY target/kafka-0.0.1-SNAPSHOT.jar  /usr/app/
 
