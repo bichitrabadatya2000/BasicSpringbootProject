@@ -19,7 +19,6 @@ public class User {
     //@GeneratedValue(strategy = GenerationType.AUTO)
 
     private String userId;
-
     private String name;
     private String mobileNumber;
     private String mailId;

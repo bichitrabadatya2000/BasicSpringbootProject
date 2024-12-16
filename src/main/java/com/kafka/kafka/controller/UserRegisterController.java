@@ -19,10 +19,7 @@ public class UserRegisterController {
    private UserRegisterService userRegisterService;
 
 
-   @GetMapping("/getData")
-   public String getData(){
-       return "Hello";
-   }
+
 
    @PostMapping("/register")
    public UserRegisterResponse userRegister(@Valid @RequestBody UserRegisterRequest userRegisterRequest) throws NotFoundExceptions {
