@@ -13,15 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
-import java.util.Optional;
-import java.util.UUID;
+
 
 @Service
 public class UserRegisterServiceImpl implements UserRegisterService {
 
-
     @Autowired
-     private UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private PasswordEncryption passwordEncryption;
@@ -31,17 +29,16 @@ public class UserRegisterServiceImpl implements UserRegisterService {
     public UserRegisterResponse userRegister(UserRegisterRequest userRegisterRequest) throws Exception, NotFoundExceptions {
         UserRegisterResponse userRegisterResponse=new UserRegisterResponse();
         if (userRegisterRequest.getMobileNumber()!=null){
-            User user=userRepository.findByMobileNumber(userRegisterRequest.getMobileNumber());
+            User user=userRepository.findByMailId(userRegisterRequest.getMailId());
             if (user!=null){
                throw new NotFoundExceptions("You are already registered Kindly sign-in ");
             }
         }
         User user = new User();
-        user.setUserId(UUID.randomUUID().toString());
         user.setName(userRegisterRequest.getName());
         user.setMailId(userRegisterRequest.getMailId());
         user.setMobileNumber(userRegisterRequest.getMobileNumber());
-        SecretKey secretKey=PasswordEncryption.generateKey();
+        SecretKey secretKey=PasswordEncryption.getStaticKey();
         user.setPassWord(PasswordEncryption.encrypt(userRegisterRequest.getPassWord(),secretKey));
         userRepository.save(user);
         userRegisterResponse.setStatusCode(200);
@@ -52,8 +49,8 @@ public class UserRegisterServiceImpl implements UserRegisterService {
     @Override
     public GetUserRegisterResponse getUserData(GetUserDataRequest getUserDataRequest) throws NotFoundExceptions {
         GetUserRegisterResponse getUserRegisterResponse=new GetUserRegisterResponse();
-        if (getUserDataRequest.getMobileNumber()!=null) {
-            User user=userRepository.findByMobileNumber(getUserDataRequest.getMobileNumber());
+        if (getUserDataRequest.getMailId()!=null) {
+            User user=userRepository.findByMailId(getUserDataRequest.getMailId());
 
             getUserRegisterResponse.setStatusCode(200);
             getUserRegisterResponse.setMessage("Data fetched successFully");

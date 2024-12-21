@@ -6,19 +6,15 @@ services:
       - "8080:8080"
     networks:
       - springbok-db-net
-    depends_on:
-      - mongoDb
-    volumes:
-      - /data/springbok-app:/app/data
 
-  mongoDb:
-    image: mongo
-    ports:
-      - "27017"
-    networks:
-      - springbok-db-net
-    volumes:
-      - mongo-data:/data/db
+#  mongoDb:
+#    image: mongo
+#    ports:
+#      - "27017"
+#    networks:
+#      - springbok-db-net
+#    volumes:
+#      - mongo-data:/data/db
 
 networks:
   springbok-db-net: # Correct network declaration

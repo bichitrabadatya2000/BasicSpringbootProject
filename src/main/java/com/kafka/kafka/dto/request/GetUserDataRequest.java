@@ -9,5 +9,5 @@ public class GetUserDataRequest {
 
     @NotBlank(message = "Message shouldn't be null or empty ")
     @NotNull(message = "Message shouldn't be null or empty ")
-    private String mobileNumber;
+    private String mailId;
 }

@@ -4,24 +4,17 @@ package com.kafka.kafka.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-
-
 @Entity
-@Table(name = "Users")
+@Table(name = "Customer")
 @Data
-public class User {
 
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String mobileNumber;
-    private String mailId;
-    private String passWord;
-
-
-
+    private String price;
 
 
 }
